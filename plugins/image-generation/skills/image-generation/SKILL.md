@@ -27,6 +27,36 @@ To generate an image, use the provided script:
 ${CLAUDE_PLUGIN_ROOT}/skills/image-generation/scripts/generate-image.sh "your prompt here" output.png
 ```
 
+## Configuration
+
+The script uses environment variables for API configuration with sensible defaults:
+
+| Variable | Default | Description |
+|----------|---------|-------------|
+| `IMAGE_GEN_API_URL` | `http://127.0.0.1:8317/v1/chat/completions` | API endpoint URL |
+| `IMAGE_GEN_API_KEY` | `ccs-internal-managed` | API authentication key |
+| `IMAGE_GEN_MODEL` | `gemini-3-pro-image-preview` | Model to use for generation |
+
+### Setting Up
+
+**Option 1: Environment variables (recommended)**
+```bash
+export IMAGE_GEN_API_KEY="your-api-key"
+export IMAGE_GEN_API_URL="https://your-api-endpoint/v1/chat/completions"
+export IMAGE_GEN_MODEL="gemini-2.5-flash-image-preview"
+```
+
+**Option 2: Shell profile (persistent)**
+Add to `~/.bashrc` or `~/.zshrc`:
+```bash
+export IMAGE_GEN_API_KEY="your-api-key"
+```
+
+**Option 3: Inline per-command**
+```bash
+IMAGE_GEN_API_KEY="your-key" ./generate-image.sh "prompt" output.png
+```
+
 ## Script Usage
 
 ### Basic Command

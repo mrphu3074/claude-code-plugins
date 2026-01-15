@@ -5,12 +5,10 @@
 
 set -e
 
-# Configuration
-API_URL="http://127.0.0.1:8317/v1/chat/completions"
-API_KEY="ccs-internal-managed"
-
-# or gemini-2.5-flash-image-preview
-MODEL="gemini-3-pro-image-preview"
+# Configuration (from environment variables with defaults)
+API_URL="${IMAGE_GEN_API_URL:-http://127.0.0.1:8317/v1/chat/completions}"
+API_KEY="${IMAGE_GEN_API_KEY:-ccs-internal-managed}"
+MODEL="${IMAGE_GEN_MODEL:-gemini-3-pro-image-preview}"
 
 # Arguments
 PROMPT="${1:-"Create a high quality realistic picture"}"
