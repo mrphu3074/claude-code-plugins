@@ -6,7 +6,7 @@
   "plugins": [
     {
       "name": "image-generation",
-      "source": "../",
+      "source": ".",
       "description": "Text-to-image generation skill using Gemini image models"
     }
   ]
