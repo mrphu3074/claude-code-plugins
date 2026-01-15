@@ -54,6 +54,12 @@ ${CLAUDE_PLUGIN_ROOT}/skills/image-generation/scripts/generate-image.sh "your pr
 | 9:16 | Mobile screens, stories, vertical content |
 | 3:2 | Photography, print materials |
 
+## Important: Do Not Read Generated Images
+
+**CRITICAL**: After generating an image, do NOT use the Read tool to view the generated file. Reading image files consumes significant context tokens (often 2-4MB per image) and is unnecessary. The script output confirms successful generation with the file path - that is sufficient.
+
+Simply inform the user that the image was generated and provide the file path. Let the user view the image in their preferred image viewer.
+
 ## Workflow
 
 ### Standard Image Generation
@@ -61,7 +67,7 @@ ${CLAUDE_PLUGIN_ROOT}/skills/image-generation/scripts/generate-image.sh "your pr
 1. Craft a detailed prompt describing the desired image
 2. Choose appropriate aspect ratio for the use case
 3. Execute the generation script
-4. Review the output and iterate if needed
+4. Confirm success to the user with the output path (do NOT read the image file)
 
 ### Example Commands
 
@@ -117,6 +123,12 @@ featuring [key elements], [additional details]
 ```
 
 ## Best Practices
+
+### Context Token Conservation
+
+- NEVER read generated image files with the Read tool - they consume 2-4MB of context
+- Confirm generation success via script output only
+- Let users view images in external viewers
 
 ### Prompt Quality
 
