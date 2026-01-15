@@ -1,0 +1,31 @@
+# UI/UX Design Prompts
+
+## Dashboard Designs
+
+Modern analytics dashboard with dark theme, featuring sidebar navigation, line charts showing monthly trends, donut chart for category breakdown, KPI cards at top, purple and gray color scheme, clean minimal aesthetic
+
+SaaS admin dashboard, light theme, top navigation bar, data table with sorting controls, filter sidebar, status badges, action buttons, blue and white professional style
+
+Real-time monitoring dashboard, dark mode, grid of metric cards with sparklines, alert indicators, system status panel, green and dark gray colors, technical aesthetic
+
+## Mobile App Screens
+
+E-commerce product detail screen, clean design, large product image, price and rating, size selector buttons, add to cart CTA, related products carousel, white and coral accents
+
+Social media profile screen, modern design, circular profile photo, stats row, grid of posts, follow button, bio section, gradient header, dark theme
+
+Fitness tracker home screen, motivational design, circular progress ring, daily stats cards, workout history list, achievement badges, energetic orange and dark colors
+
+## Landing Pages
+
+Developer tool landing page hero, dark theme, code snippet preview, feature highlights with icons, gradient CTA button, abstract geometric background, modern tech aesthetic
+
+Creative agency portfolio hero, artistic design, large showcase image, minimal navigation, scroll indicator, bold typography, black and white with accent color
+
+## Web Application Interfaces
+
+Project management kanban board, clean interface, draggable cards, column headers with counts, user avatars, priority labels, add card buttons, light theme with colorful tags
+
+Email client inbox view, organized layout, message list with previews, folder sidebar, search bar, compose button, unread indicators, professional blue theme
+
+Video conference interface, modern design, main video area, participant thumbnails, control bar with mute/camera/share buttons, chat sidebar, dark theme
