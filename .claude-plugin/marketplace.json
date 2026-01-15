@@ -1,0 +1,13 @@
+{
+  "name": "image-generation-marketplace",
+  "owner": {
+    "name": "mrphu3074"
+  },
+  "plugins": [
+    {
+      "name": "image-generation",
+      "source": "../",
+      "description": "Text-to-image generation skill using Gemini image models"
+    }
+  ]
+}
