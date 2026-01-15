@@ -55,33 +55,40 @@ RESPONSE=$(curl -s -X POST "$API_URL" \
 EOF
 )
 
-# Check for errors
-if echo "$RESPONSE" | jq -e '.error' > /dev/null 2>&1; then
+# Check for errors (look for "error" key in response)
+if echo "$RESPONSE" | grep -q '"error"'; then
     echo "Error from API:"
-    echo "$RESPONSE" | jq '.error'
+    # Extract error message using grep and sed
+    ERROR_MSG=$(echo "$RESPONSE" | grep -o '"error"[^}]*' | head -1)
+    echo "$ERROR_MSG"
     exit 1
 fi
 
-# Extract and save images
-IMAGE_COUNT=$(echo "$RESPONSE" | jq -r '.choices[0].message.images | length' 2>/dev/null || echo "0")
+# Extract all image URLs from the response
+# Pattern: "image_url":{"url":"data:image/..."}
+IMAGE_URLS=$(echo "$RESPONSE" | grep -oE '"url":"data:image/[^"]+' | sed 's/"url":"//')
 
-if [ "$IMAGE_COUNT" = "0" ] || [ "$IMAGE_COUNT" = "null" ]; then
+if [ -z "$IMAGE_URLS" ]; then
     echo "No images in response. Full response:"
-    echo "$RESPONSE" | jq '.'
+    echo "$RESPONSE"
     exit 1
 fi
 
+# Count images
+IMAGE_COUNT=$(echo "$IMAGE_URLS" | wc -l)
 echo "Received $IMAGE_COUNT image(s)"
 
-for i in $(seq 0 $((IMAGE_COUNT - 1))); do
-    IMAGE_URL=$(echo "$RESPONSE" | jq -r ".choices[0].message.images[$i].image_url.url")
+# Process each image
+i=0
+while IFS= read -r IMAGE_URL; do
+    i=$((i + 1))
 
-    if [ -z "$IMAGE_URL" ] || [ "$IMAGE_URL" = "null" ]; then
-        echo "Failed to extract image URL for image $((i + 1))"
+    if [ -z "$IMAGE_URL" ]; then
+        echo "Failed to extract image URL for image $i"
         continue
     fi
 
-    echo "Generated image $((i + 1)): ${IMAGE_URL:0:50}..."
+    echo "Generated image $i: ${IMAGE_URL:0:50}..."
 
     # Remove data URI prefix and decode base64
     BASE64_DATA=$(echo "$IMAGE_URL" | sed 's/^data:image\/[^;]*;base64,//')
@@ -90,7 +97,7 @@ for i in $(seq 0 $((IMAGE_COUNT - 1))); do
     if [ "$IMAGE_COUNT" -gt 1 ]; then
         BASENAME="${OUTPUT_FILE%.*}"
         EXTENSION="${OUTPUT_FILE##*.}"
-        SAVE_PATH="${BASENAME}_$((i + 1)).${EXTENSION}"
+        SAVE_PATH="${BASENAME}_${i}.${EXTENSION}"
     else
         SAVE_PATH="$OUTPUT_FILE"
     fi
@@ -98,6 +105,6 @@ for i in $(seq 0 $((IMAGE_COUNT - 1))); do
     # Decode and save
     echo "$BASE64_DATA" | base64 -d > "$SAVE_PATH"
     echo "Saved image to $SAVE_PATH"
-done
+done <<< "$IMAGE_URLS"
 
 echo "Done!"
