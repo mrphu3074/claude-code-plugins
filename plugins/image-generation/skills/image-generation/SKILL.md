@@ -21,10 +21,10 @@ This skill enables text-to-image generation for:
 
 ## Quick Start
 
-To generate an image, use the provided script:
+To generate an image, use the provided script with named parameters:
 
 ```bash
-${CLAUDE_PLUGIN_ROOT}/skills/image-generation/scripts/generate-image.sh "your prompt here" output.png
+${CLAUDE_PLUGIN_ROOT}/skills/image-generation/scripts/generate-image.sh --prompt "your prompt here" --output output.png
 ```
 
 ## Configuration
@@ -62,17 +62,18 @@ IMAGE_GEN_API_KEY="your-key" ./generate-image.sh "prompt" output.png
 ### Basic Command
 
 ```bash
-./generate-image.sh "<prompt>" [output_file] [aspect_ratio] [image_size]
+./generate-image.sh --prompt "<prompt>" [options]
 ```
 
 ### Parameters
 
 | Parameter | Required | Default | Description |
 |-----------|----------|---------|-------------|
-| prompt | Yes | - | Text description of the image to generate |
-| output_file | No | ./image.png | Path where the image will be saved |
-| aspect_ratio | No | 16:9 | Aspect ratio (e.g., 1:1, 4:3, 16:9, 9:16) |
-| image_size | No | 1K | Resolution: 1K, 2K, or 4K |
+| --prompt TEXT | Yes | - | Text description of the image to generate |
+| --output FILE | No | ./image.png | Path where the image will be saved |
+| --aspect-ratio RATIO | No | 16:9 | Aspect ratio (e.g., 1:1, 4:3, 16:9, 9:16) |
+| --size SIZE | No | 1K | Resolution: 1K, 2K, or 4K |
+| --reference FILES | No | - | Reference image(s) for style/content consistency (.png, .jpg, .jpeg, .gif, .webp). Single or comma-separated list |
 
 ### Common Aspect Ratios
 
@@ -104,22 +105,46 @@ Simply inform the user that the image was generated and provide the file path. L
 **UI Mockup:**
 ```bash
 ${CLAUDE_PLUGIN_ROOT}/skills/image-generation/scripts/generate-image.sh \
-  "Modern minimalist dashboard UI with dark theme, showing analytics charts and user metrics" \
-  dashboard-mockup.png 16:9 2K
+  --prompt "Modern minimalist dashboard UI with dark theme, showing analytics charts and user metrics" \
+  --output dashboard-mockup.png \
+  --aspect-ratio 16:9 \
+  --size 2K
 ```
 
 **Logo Design:**
 ```bash
 ${CLAUDE_PLUGIN_ROOT}/skills/image-generation/scripts/generate-image.sh \
-  "Professional tech company logo, abstract geometric design, blue and white colors" \
-  logo.png 1:1 1K
+  --prompt "Professional tech company logo, abstract geometric design, blue and white colors" \
+  --output logo.png \
+  --aspect-ratio 1:1 \
+  --size 1K
 ```
 
 **Mobile App Screen:**
 ```bash
 ${CLAUDE_PLUGIN_ROOT}/skills/image-generation/scripts/generate-image.sh \
-  "Mobile app login screen, clean design with gradient background, modern UI" \
-  mobile-login.png 9:16 2K
+  --prompt "Mobile app login screen, clean design with gradient background, modern UI" \
+  --output mobile-login.png \
+  --aspect-ratio 9:16 \
+  --size 2K
+```
+
+**With Single Reference Image:**
+```bash
+${CLAUDE_PLUGIN_ROOT}/skills/image-generation/scripts/generate-image.sh \
+  --prompt "Create a logo in this style with modern tech aesthetic" \
+  --output output-logo.png \
+  --aspect-ratio 1:1 \
+  --size 2K \
+  --reference reference-style.jpg
+```
+
+**With Multiple Reference Images:**
+```bash
+${CLAUDE_PLUGIN_ROOT}/skills/image-generation/scripts/generate-image.sh \
+  --prompt "Combine the styles from these references" \
+  --output combined.png \
+  --reference style1.png,style2.jpg,style3.png
 ```
 
 ## Prompt Engineering Guidelines
@@ -189,6 +214,22 @@ If generation fails:
 2. Check prompt length (keep under 1000 characters)
 3. Ensure output directory exists and is writable
 4. Review API response for specific error messages
+5. If using reference image, verify:
+   - File exists and is readable
+   - Format is supported (.png, .jpg, .jpeg, .gif, .webp)
+   - File size is reasonable (recommended max: 5MB)
+
+## Reference Images
+
+When providing reference images:
+- **Single reference:** `--reference style.jpg`
+- **Multiple references:** `--reference img1.png,img2.png,img3.png`
+- All reference images are sent to the API to guide style, composition, or content consistency
+- Supported formats: .png, .jpg, .jpeg, .gif, .webp
+- Images are base64-encoded automatically
+- All images must exist at the specified paths and be readable
+- Reference images appear FIRST in the content array, before the text prompt
+- Multiple reference images allow combining different style elements or visual concepts
 
 ## Additional Resources
 

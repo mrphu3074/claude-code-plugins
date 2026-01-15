@@ -1,5 +1,5 @@
 {
   "name": "image-generation",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Text-to-image generation skill using Gemini image models"
 }

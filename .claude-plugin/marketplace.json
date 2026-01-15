@@ -1,7 +1,7 @@
 {
     "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
     "name": "mrphu3074-cc-marketplace",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "Mrphu3074's plugins for Claude Code",
     "owner": {
         "name": "mrphu3074",
@@ -11,7 +11,7 @@
         {
             "name": "image-generation",
             "description": "Text-to-image generation skill using Gemini image models",
-            "version": "1.0.1",
+            "version": "1.0.2",
             "source": "./plugins/image-generation",
             "category": "development"
         }
