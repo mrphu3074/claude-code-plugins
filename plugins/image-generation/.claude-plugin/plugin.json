@@ -1,5 +1,9 @@
 {
-  "name": "image-generation",
-  "version": "1.0.2",
-  "description": "Text-to-image generation skill using Gemini image models"
+	"name": "image-generation",
+	"version": "1.0.2",
+	"description": "Text-to-image generation skill using Gemini image models",
+	"author": {
+		"name": "Phu Nguyen",
+		"email": "mrphu3074@gmail.com"
+	}
 }
