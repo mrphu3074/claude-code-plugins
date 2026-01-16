@@ -1,0 +1,5 @@
+# Generated prompts directory
+prompts/
+
+# Local plugin settings
+.claude/*.local.md

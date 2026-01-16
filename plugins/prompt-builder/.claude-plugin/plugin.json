@@ -1,0 +1,16 @@
+{
+	"name": "prompt-builder",
+	"version": "1.0.0",
+	"description": "Build well-structured prompts using Anthropic XML tag best practices for clarity, accuracy, and parseability",
+	"author": {
+		"name": "Phu Nguyen",
+		"email": "mrphu3074@gmail.com"
+	},
+	"keywords": [
+		"prompts",
+		"xml-tags",
+		"prompt-engineering",
+		"structured-prompts",
+		"anthropic"
+	]
+}
