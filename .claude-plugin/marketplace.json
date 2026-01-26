@@ -1,7 +1,7 @@
 {
     "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
     "name": "mrphu3074-cc-marketplace",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "description": "Mrphu3074's plugins for Claude Code",
     "owner": {
         "name": "mrphu3074",
@@ -22,6 +22,14 @@
             "version": "1.0.0",
             "source": "./plugins/prompt-builder",
             "category": "productivity",
+            "skills": "./skills/"
+        },
+        {
+            "name": "brain",
+            "description": "Local-first agentic knowledge management — indexes unstructured notes into structured markdown with auto-extracted metadata for vectorless semantic retrieval",
+            "version": "0.1.0",
+            "source": "./plugins/brain",
+            "category": "knowledge-management",
             "skills": "./skills/"
         }
     ]

@@ -1,0 +1,17 @@
+{
+  "name": "brain",
+  "version": "0.1.0",
+  "description": "Local-first agentic knowledge management — indexes unstructured notes into structured markdown with auto-extracted metadata, enabling vectorless semantic retrieval through entity-centric tree indexes",
+  "author": {
+    "name": "Phu Nguyen",
+    "email": "mrphu3074@gmail.com"
+  },
+  "keywords": [
+    "knowledge-management",
+    "agentic-metadata",
+    "local-rag",
+    "vectorless-search",
+    "meeting-notes",
+    "second-brain"
+  ]
+}
