@@ -21,6 +21,7 @@ Create the following directory structure:
 ├── index.md
 ├── config.md
 ├── sources.md
+├── journal/
 ├── entities/
 │   ├── people.md
 │   ├── projects.md
@@ -45,6 +46,7 @@ source_patterns:
   - "notes/**/*.md"
   - "meetings/**/*.md"
   - "journal/**/*.md"
+  - ".brain/journal/*.md"
   - "1on1/**/*.md"
   - "docs/**/*.md"
 ignored_patterns:

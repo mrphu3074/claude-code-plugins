@@ -73,6 +73,7 @@ Brain includes two proactive agents:
 |---------|-------------|
 | `/brain:init` | Initialize `.brain/` directory in current project |
 | `/brain:index [path]` | Index a file or directory into the knowledge base |
+| `/brain:journal [entry]` | Add a timestamped journal entry for today |
 | `/brain:recall [query]` | Search and retrieve knowledge |
 | `/brain:status` | View knowledge base stats and health |
 
@@ -87,6 +88,8 @@ On session start, Brain automatically loads a summary of your knowledge base int
 ├── index.md              # Master tree index (heading hierarchy for retrieval)
 ├── config.md             # Brain configuration
 ├── sources.md            # Source file tracking
+├── journal/              # Daily journal entries
+│   └── journal-YYYY-MM-DD.md
 ├── entities/
 │   ├── people.md         # People registry + relationships
 │   ├── projects.md       # Projects registry + status
@@ -132,6 +135,6 @@ Brain uses a **vectorless, reasoning-based** approach inspired by [PageIndex](ht
 ## Components
 
 - **2 Skills**: knowledge-indexing, knowledge-retrieval
-- **4 Commands**: init, index, recall, status
+- **5 Commands**: init, index, journal, recall, status
 - **2 Agents**: brain-indexer (proactive), brain-retriever (proactive)
 - **1 Hook**: SessionStart (loads brain context)
